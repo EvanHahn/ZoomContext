@@ -6,6 +6,12 @@
 
     this.realContext = real;
 
+    this.zoom = 1;
+    this.center = {
+      x: real.canvas.width / 2,
+      y: real.canvas.height / 2
+    };
+
     Object.defineProperty(this, 'canvas', {
       value: real.canvas,
       enumerable: true,
