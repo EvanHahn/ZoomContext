@@ -92,6 +92,11 @@
   // zoom-related methods
   // ====================
 
+  ZoomContext.prototype.translate = function translate(x, y) {
+    this.center.x = x;
+    this.center.y = y;
+  };
+
   ZoomContext.prototype.zoomToSize = function zoomToSize(s) {
     this.zoom = Math.min(this.width, this.height) / s;
   };
@@ -110,8 +115,32 @@
   // define a bunch of the methods
   // =============================
 
+  var xy = ['x', 'y'];
+  var xyxy = ['x', 'y', 'x', 'y'];
+  var xyss = ['x', 'y', 'size', 'size'];
+  var nxys = [null, 'x', 'y', 'size'];
+
   var updatedMethods = {
-    fillRect: ['x', 'y', 'size', 'size']
+    arc: ['x', 'y', 'size', null, null, null],
+    arcTo: ['x', 'y', 'x', 'y', 'size'],
+    beizerCurveTo: ['x', 'y', 'x', 'y', 'x', 'y'],
+    clearRect: xyss,
+    createLinearGradient: xyxy,
+    createRadialGradient: ['x', 'y', 'size', 'x', 'y', 'size'],
+    drawImage: [null, 'x', 'y', 'size', 'size', 'x', 'y', 'size', 'size'],
+    fillRect: xyss,
+    fillText: nxys,
+    isPointInPath: xy,
+    isPointInStroke: xy,
+    lineTo: xy,
+    moveTo: xy,
+    putImageData: [null, 'x', 'y', null, null, null, null],
+    quadraticCurveTo: xyxy,
+    rect: xyss,
+    // TODO: setTransform?
+    strokeRect: xyss,
+    strokeText: nxys
+    // TODO: transform?
   };
 
   Object.keys(updatedMethods).forEach(function(methodName) {
@@ -120,13 +149,16 @@
 
     var fn = function() {
       var args = arguments;
-      for (var i = 0, len = method.length; i < len; i ++) {
+      for (var i = 0; i < arguments.length; i ++) {
         if (method[i])
           args[i] = this.real(method[i], arguments[i]);
+        else
+          args[i] = arguments[i];
       }
       this.realContext[methodName].apply(this.realContext, args);
     };
     fn.name = methodName;
+
     ZoomContext.prototype[methodName] = fn;
 
   });

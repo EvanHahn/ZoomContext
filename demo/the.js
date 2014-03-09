@@ -10,7 +10,9 @@ var player = {
 	x: 100, y: 100,
 	draw: function(zctx) {
 		zctx.fillStyle = '#f00';
-		zctx.fillRect(this.x, this.y, 20, 20);
+		zctx.beginPath();
+		zctx.arc(this.x, this.y, 20, 0, Math.PI * 2);
+		zctx.fill();
 	}
 };
 
