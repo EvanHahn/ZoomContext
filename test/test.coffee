@@ -28,7 +28,7 @@ describe 'ZoomContext', ->
         expect(context[property]).to.equal 456
         expect(zoom[property]).to.equal 456
 
-    it "doesn't let you set the canvas property", ->
+    it "doesn't let you set the `canvas` property", ->
       zoom = new ZoomContext(context)
       expect(zoom.canvas).to.equal canvas
       zoom.canvas = 123
