@@ -6,7 +6,7 @@
 
     this.realContext = real;
 
-    Object.defineProperty(me, 'canvas', {
+    Object.defineProperty(this, 'canvas', {
       value: real.canvas,
       enumerable: true,
       writable: false
