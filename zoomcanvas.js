@@ -1,8 +1,33 @@
 (function() {
 
-  function ZoomContext(realContext) {
+  function ZoomContext(real) {
 
-    this.realContext = realContext;
+    var me = this;
+
+    this.realContext = real;
+
+    Object.defineProperty(me, 'canvas', {
+      value: real.canvas,
+      enumerable: true,
+      writable: false
+    });
+
+    Object.keys(real).forEach(function(property) {
+
+      if (property === 'canvas')
+        return;
+
+      Object.defineProperty(me, property, {
+        enumerable: true,
+        get: function() {
+          return real[property];
+        },
+        set: function(value) {
+          return (real[property] = value);
+        }
+      });
+
+    });
 
   }
 
