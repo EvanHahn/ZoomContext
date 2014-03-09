@@ -1,4 +1,6 @@
-ZoomContext = require '../zoomcanvas'
+# TODO: these don't work!
+
+ZoomContext = require '../zoomcontext'
 expect = require('chai').expect
 sinon = require 'sinon'
 
