@@ -1,0 +1,16 @@
+{
+  "name": "zoomcanvas",
+  "description": "extends HTML5 canvas to add panning and zooming",
+  "author": "Evan Hahn <me@evanhahn.com> (http://evanhahn.com)",
+  "version": "0.1.0",
+  "license": "WTFPL",
+  "index": "zoomcanvas.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "chai": "latest",
+    "coffee-script": "1.7.x"
+  }
+}
