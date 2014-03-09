@@ -41,3 +41,8 @@ describe 'ZoomContext', ->
       expect(zoom.center.x).to.equal(canvas.width / 2)
       expect(zoom.center.y).to.equal(canvas.height / 2)
       expect(zoom.zoom).to.equal 1
+
+  describe 'extra methods', ->
+
+    describe '#clear', ->
+      # TODO
