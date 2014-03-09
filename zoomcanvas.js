@@ -67,15 +67,15 @@
   // =============================================
 
   ZoomContext.prototype.realSize = function realSize(s) {
-    return s; // TODO
+    return s * this.zoom;
   };
 
   ZoomContext.prototype.realX = function realX(x) {
-    return x - this.center.x + (this.width / 2);
+    return (this.zoom * (x - this.center.x)) + (this.width / 2);
   };
 
   ZoomContext.prototype.realY = function realY(y) {
-    return y - this.center.y + (this.height / 2);
+    return (this.zoom * (y - this.center.y)) + (this.height / 2);
   };
 
   ZoomContext.prototype.real = function real(thing, v) {
@@ -92,14 +92,19 @@
   // zoom-related methods
   // ====================
 
+  ZoomContext.prototype.zoomToSize = function zoomToSize(s) {
+    this.zoom = Math.min(this.width, this.height) / s;
+  };
+
   ZoomContext.prototype.keepInView = function keepInView(options) {
     var padding = options.padding || 0;
     var xs = options.coordinates.map(function(c) { return c.x; });
     var ys = options.coordinates.map(function(c) { return c.y; });
-    var min = { x: arrayMin(xs) - padding, y: arrayMin(ys) + padding };
+    var min = { x: arrayMin(xs) - padding, y: arrayMin(ys) - padding };
     var max = { x: arrayMax(xs) + padding, y: arrayMax(ys) + padding };
     this.center.x = (min.x + max.x) / 2;
     this.center.y = (min.y + max.y) / 2;
+    this.zoomToSize(Math.max(max.x - min.x, max.y - min.y));
   };
 
   // define a bunch of the methods

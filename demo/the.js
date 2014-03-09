@@ -1,15 +1,13 @@
 var box = {
-	x: 200,
-	y: 200,
+	x: 200, y: 200,
 	draw: function(zctx) {
 		zctx.fillStyle = '#000';
 		zctx.fillRect(this.x, this.y, 50, 50);
 	}
-}
+};
 
 var player = {
-	x: 100,
-	y: 100,
+	x: 100, y: 100,
 	draw: function(zctx) {
 		zctx.fillStyle = '#f00';
 		zctx.fillRect(this.x, this.y, 20, 20);
@@ -37,9 +35,10 @@ var zctx = new ZoomContext(ctx);
 
 	zctx.keepInView({
 		coordinates: [
-			{ x: player.x, y: player.y }
+			{ x: player.x + 10, y: player.y + 10 },
+			{ x: box.x + 25, y: box.y + 25 }
 		],
-		padding: 10
+		padding: 30
 	});
 
 	player.draw(zctx);
