@@ -4,13 +4,5 @@
   "author": "Evan Hahn <me@evanhahn.com> (http://evanhahn.com)",
   "version": "0.1.0",
   "license": "WTFPL",
-  "index": "zoomcontext.js",
-  "scripts": {
-    "test": "mocha"
-  },
-  "devDependencies": {
-    "coffee-script": "1.7.x",
-    "chai": "1.9.x",
-    "mocha": "1.17.x"
-  }
+  "index": "zoomcontext.js"
 }
