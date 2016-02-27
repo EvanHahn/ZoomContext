@@ -3,6 +3,6 @@
   "description": "extends HTML5 canvas to add panning and zooming",
   "author": "Evan Hahn <me@evanhahn.com> (http://evanhahn.com)",
   "version": "0.1.0",
-  "license": "WTFPL",
+  "license": "Unlicense",
   "index": "zoomcontext.js"
 }
